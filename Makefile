@@ -1,10 +1,8 @@
-install: install-deps install-flow-typed
+install:
+	npm install
 
 start:
 	npm run nodemon -- --exec npm run babel-node -- server/bin/slack.js
-
-install-deps:
-	npm install
 
 build:
 	rm -rf dist
@@ -22,5 +20,9 @@ lint:
 
 publish:
 	npm publish
+
+s: start
+
+b: build
 
 .PHONY: test

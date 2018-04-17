@@ -1,20 +1,18 @@
 {
-  "name": "frontend_l4_chat_project",
+  "name": "frontend_chat_project",
   "version": "0.0.1",
-  "description": "",
+  "description": "No more than a learning project",
   "main": "dist/index.js",
   "bin": {
-    "hexlet": "dist/bin/hexlet.js"
+    "hexlet": "dist/bin/slack.js"
   },
   "engines": {
-    "node": "9.4"
+    "node": "8.6"
   },
   "scripts": {
     "nodemon": "nodemon",
     "test": "jest",
     "babel-node": "babel-node",
-    "flow": "flow",
-    "flow-typed": "flow-typed",
     "start": "babel-node ./src/bin/slack.js",
     "eslint": "eslint",
     "webpack": "webpack",
@@ -25,64 +23,58 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:hexlet/frontend_l4_chat_project.git"
+    "url": "https://github.com/1ike/project-lvl4-s223"
   },
-  "author": "Kirill Mokevnin",
   "license": "ISC",
-  "bugs": {
-    "url": ""
-  },
   "homepage": "",
   "dependencies": {
-    "babel-loader": "8.0.0-beta.0",
     "@babel/cli": "*",
     "@babel/core": "*",
     "@babel/node": "*",
     "@babel/polyfill": "*",
     "@babel/preset-env": "*",
-    "@babel/preset-flow": "*",
     "@babel/preset-react": "*",
     "@babel/preset-stage-0": "*",
+    "axios": "*",
+    "babel-loader": "^8.0.0-beta.2",
     "bootstrap": "^4.0.0",
-    "react-bootstrap": "*",
+    "classnames": "*",
     "css-loader": "*",
     "debug": "*",
     "dotenv": "^4.0.0",
+    "faker": "*",
     "jquery": "^3.1.1",
+    "js-cookie": "*",
     "koa": "*",
     "koa-bodyparser": "^4.1.0",
+    "koa-generic-session": "*",
     "koa-logger": "*",
     "koa-pug": "^3.0.0-2",
     "koa-router": "next",
-    "koa-generic-session": "*",
     "koa-static": "^3.0.0",
-    "koa-webpack": "^0.3.1",
+    "koa-webpack": "^3.0.2",
     "lodash": "*",
-    "classnames": "*",
-    "faker": "*",
-    "js-cookie": "*",
-    "style-loader": "*",
-    "webpack": "*",
+    "popper.js": "*",
     "react": "*",
+    "react-bootstrap": "*",
     "react-dom": "*",
+    "react-redux": "*",
+    "redux": "*",
     "redux-actions": "*",
-    "redux-thunk": "*",
     "redux-bootstrap": "*",
     "redux-form": "*",
-    "axios": "*",
-    "redux": "*",
+    "redux-thunk": "*",
     "socket.io": "*",
-    "react-redux": "*"
+    "style-loader": "*",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
   },
   "devDependencies": {
     "babel-eslint": "*",
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
-    "eslint-plugin-flowtype": "*",
     "eslint-plugin-import": "*",
-    "flow-bin": "^0.63",
-    "flow-typed": "*",
     "jest": "^22",
-    "nodemon": "*"
+    "nodemon": "^1.17.3"
   }
 }
