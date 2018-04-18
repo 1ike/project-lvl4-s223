@@ -27,4 +27,10 @@ s:
 
 b: build
 
+bs:
+	npm run build-server
+
+bc:
+	npm run build-app
+
 .PHONY: test
