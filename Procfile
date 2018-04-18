@@ -1,2 +1,2 @@
-web: npm i && node dist/bin/slack
+web: node dist/bin/slack
 
