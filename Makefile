@@ -7,7 +7,6 @@ start:
 build:
 	rm -rf dist
 	npm run build
-	npm run webpack -- -p --env production && babel frontend --out-dir dist --source-maps inline
 
 test:
 	npm test
@@ -21,9 +20,9 @@ lint:
 publish:
 	npm publish
 
-s: start
+srv: start
 
-srv:
+s:
 	npm run babel-node -- server/bin/slack.js
 
 b: build
