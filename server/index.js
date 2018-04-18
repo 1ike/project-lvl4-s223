@@ -1,5 +1,3 @@
-// @flow
-
 // import 'babel-polyfill';
 
 import path from 'path';
@@ -18,6 +16,9 @@ import addRoutes from './routes';
 
 import webpackConfig from '../webpack.config';
 
+
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default () => {
   const app = new Koa();
 
@@ -25,9 +26,11 @@ export default () => {
   app.use(session(app));
   app.use(bodyParser());
   // app.use(serve(path.join(__dirname, '..', 'public')));
-  app.use(middleware({
-    config: webpackConfig,
-  }));
+  if (!isProduction) {
+    app.use(middleware({
+      config: webpackConfig,
+    }));
+  }
 
   const router = new Router();
 
@@ -38,7 +41,7 @@ export default () => {
     pretty: true,
     compileDebug: true,
     locals: [],
-    noCache: process.env.NODE_ENV !== 'production',
+    noCache: !isProduction,
     basedir: path.join(__dirname, 'views'),
     helperPath: [
       { _ },

@@ -7,6 +7,7 @@ module.exports = {
     app: ['./src'],
     // vendors: ['jquery', 'popper.js', 'bootstrap'],
   },
+  devtool: 'inline-source-map',
   externals: {
     gon: 'gon',
   },

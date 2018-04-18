@@ -23,6 +23,9 @@ publish:
 
 s: start
 
+srv:
+	npm run babel-node -- server/bin/slack.js
+
 b: build
 
 .PHONY: test
