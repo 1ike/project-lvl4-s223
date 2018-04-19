@@ -2,6 +2,7 @@ install:
 	npm install
 
 start:
+	rm -rf dist/assets
 	npm run nodemon -- --exec npm run babel-node -- server/bin/slack.js
 
 build:
@@ -23,6 +24,7 @@ publish:
 srv: start
 
 s:
+	rm -rf dist/assets
 	npm run babel-node -- server/bin/slack.js
 
 b: build

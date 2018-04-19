@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Channels from '../../containers/Sidebar/Channels';
-import User from '../../containers/Sidebar/User';
+import Channels from './Channels.jsx';
+import User from './User.jsx';
 
 
 export default class Sidebar extends React.Component {

@@ -1,8 +1,17 @@
 import React from 'react';
 import _ from 'lodash';
+import _connect from '../../connect';
 
 
-export default class Channels extends React.Component {
+const mapStateToProps = (state) => {
+  const props = {
+    channels: state.channels,
+  };
+  return props;
+};
+
+
+class Channels extends React.Component {
   render() {
     return (
       <div id='channels' className='mt-5'>
@@ -16,3 +25,6 @@ export default class Channels extends React.Component {
     );
   }
 }
+
+
+export default _connect(mapStateToProps)(Channels);

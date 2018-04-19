@@ -1,7 +1,16 @@
 import React from 'react';
+import _connect from '../../connect';
 
 
-export default class User extends React.Component {
+const mapStateToProps = (state) => {
+  const props = {
+    user: state.user,
+  };
+  return props;
+};
+
+
+class User extends React.Component {
   render() {
     return (
       <div id='user'>
@@ -11,3 +20,6 @@ export default class User extends React.Component {
     );
   }
 }
+
+
+export default _connect(mapStateToProps)(User);
