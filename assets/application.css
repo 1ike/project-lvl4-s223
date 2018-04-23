@@ -32,7 +32,6 @@ body {
 
 #messages {
   min-height: 10em;
-  max-height: 36em;
   flex: auto;
   overflow: auto;
   padding: 0.3em;
@@ -42,5 +41,5 @@ body {
   color: #777;
 }
 
-#messageForm {
-}
+/* #messageForm {
+} */
