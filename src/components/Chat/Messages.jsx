@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import cn from 'classnames';
-import $ from 'jquery';
 
 import _connect from '../../connect';
 
@@ -39,7 +38,7 @@ export default class Messages extends React.Component {
   componentDidMount() {
     this.setHeight();
 
-    $(window).resize(this.setHeight);
+    window.addEventListener('resize', this.setHeight);
   }
 
   componentDidUpdate() {

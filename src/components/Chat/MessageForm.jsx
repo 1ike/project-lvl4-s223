@@ -5,10 +5,14 @@ import _connect from '../../connect';
 
 class MessageForm extends React.Component {
   addMessage = (value) => {
+    const text = value.inputMessage;
+    document.getElementById('inputMessage').focus();
+    if (!text) return;
+
     const data = {
       data: {
         attributes: {
-          text: value.inputMessage,
+          text,
           user: this.props.currentUser,
         },
       },
@@ -16,6 +20,7 @@ class MessageForm extends React.Component {
     this.props.addMessage(data, this.props.currentChannelId);
     this.props.reset();
   }
+
 
   render() {
     const disabled = this.props.messageAddingState === 'requested';
@@ -25,7 +30,7 @@ class MessageForm extends React.Component {
         id='messageForm'
         className='mt-3'
         onSubmit={this.props.handleSubmit(this.addMessage)}
-      >
+        >
 
         <Field
           component="textarea"
