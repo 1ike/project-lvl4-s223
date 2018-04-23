@@ -17,3 +17,7 @@ make start
 ```
 
 Open localhost:4000
+
+## Demo
+
+May be it still live @ [http://slyak.herokuapp.com/](http://slyak.herokuapp.com/)

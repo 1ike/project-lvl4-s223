@@ -4,22 +4,19 @@ import _connect from '../../connect';
 
 const mapStateToProps = (state) => {
   const props = {
-    user: state.user,
+    currentUser: state.currentUser,
   };
   return props;
 };
 
-
-class User extends React.Component {
+@_connect(mapStateToProps)
+export default class User extends React.Component {
   render() {
     return (
       <div id='user'>
         <h2>Name</h2>
-        <p>{this.props.user.name}</p>
+        <p>{this.props.currentUser.name}</p>
       </div>
     );
   }
 }
-
-
-export default _connect(mapStateToProps)(User);
