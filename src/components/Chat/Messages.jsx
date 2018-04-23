@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
 @_connect(mapStateToProps)
 export default class Messages extends React.Component {
-  setHeight() {
+  setHeight = () => {
     const { el } = this;
     const scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -28,6 +28,8 @@ export default class Messages extends React.Component {
     const elInitHeight = el.offsetHeight;
     const height = diff > 0 ? elInitHeight - diff : elInitHeight;
     el.style.height = `${height}px`;
+
+    this.scrollToBottom();
   }
 
   scrollToBottom() {
@@ -36,7 +38,6 @@ export default class Messages extends React.Component {
 
   componentDidMount() {
     this.setHeight();
-    this.scrollToBottom();
 
     $(window).resize(this.setHeight);
   }
