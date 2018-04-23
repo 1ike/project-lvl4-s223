@@ -10,25 +10,30 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  flex: auto;
 }
 
 #content {
   display: flex;
   flex-direction: column;
+  flex: auto;
 }
 
 #main {
+  flex: auto;
 }
 
 #chat {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  flex: auto;
 }
 
 #messages {
   min-height: 10em;
-  max-height: 20em;
+  max-height: 36em;
+  flex: auto;
   overflow: auto;
   padding: 0.3em;
 }
