@@ -2,34 +2,38 @@ import { createAction } from 'redux-actions';
 import axios from 'axios';
 
 import socket from '../socket';
-import { getPathFromRoute } from '../routes';
+import routes from '../routes';
 
 
 export const addMessageRequest = createAction('MESSAGE_ADD_REQUEST');
 export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
-export const addMessage = (data, channelId) => (dispatch) => {
+export const addMessage = (text, user, channelId) => async (dispatch) => {
   dispatch(addMessageRequest());
+  console.log(routes);
+  const url = routes.messages.getURL(channelId);
 
-  const url = getPathFromRoute('messages', channelId);
+  const data = {
+    data: {
+      attributes: {
+        text,
+        user,
+      },
+    },
+  };
 
-  axios.post(url, data)
-    .then((response) => {
-      if (response.status !== 201) throw Error('Something went wrong...');
-      const { data: { attributes: message } } = response.data;
-      dispatch(addMessageSuccess({ message }));
-      console.log(message);
-    })
-    .catch((error) => {
-      console.log(url);
-      console.log(error);
-      dispatch(addMessageFailure());
-    });
-
-  // try {
-  // } catch (e) {
-  // }
+  try {
+    const response = await axios.post(url, data);
+    if (response.status !== 201) throw Error('Something went wrong...');
+    const { data: { attributes: message } } = response.data;
+    dispatch(addMessageSuccess({ message }));
+    console.log(message);
+  } catch (error) {
+    console.log(url);
+    console.log(error);
+    dispatch(addMessageFailure());
+  }
 };
 
 export const messageReceived = createAction('MESSAGE_RECEIVED');

@@ -1,14 +1,21 @@
 const prefix = '/api/v1';
 
 
-export const routes = {
+const getPathFromRoute = (routeData, id) => {
+  const { route, param } = routeData;
+  return (prefix + route).replace(param, id);
+};
+
+
+const messages = {
+  route: '/channels/:channelId/messages',
+  param: ':channelId',
+};
+
+export default {
   messages: {
-    route: '/channels/:channelId/messages',
-    param: ':channelId',
+    ...messages,
+    getURL: id => getPathFromRoute(messages, id),
   },
 };
 
-export const getPathFromRoute = (name, id) => {
-  const { route, param } = routes[name];
-  return (prefix + route).replace(param, id);
-};
