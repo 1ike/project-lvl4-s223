@@ -59,7 +59,7 @@ export default class Messages extends React.Component {
           });
 
           return (
-          <div key={_.uniqueId()}>
+          <div key={message.id}>
             <b className={userClass}>{message.user.name}:</b>
             {message.text}
           </div>

@@ -9,11 +9,11 @@ export const addMessageRequest = createAction('MESSAGE_ADD_REQUEST');
 export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
-export const addMessage = (text, user, channelId) => async (dispatch) => {
+export const addMessage = (text, user, channelId, reset) => async (dispatch, getState) => {
   dispatch(addMessageRequest());
-  console.log(routes);
-  const url = routes.messages.getURL(channelId);
 
+  const url = routes.messages.getURL(channelId);
+  console.log(getState().messageAddingState);
   const data = {
     data: {
       attributes: {
@@ -25,9 +25,9 @@ export const addMessage = (text, user, channelId) => async (dispatch) => {
 
   try {
     const response = await axios.post(url, data);
-    if (response.status !== 201) throw Error('Something went wrong...');
     const { data: { attributes: message } } = response.data;
     dispatch(addMessageSuccess({ message }));
+    reset();
     console.log(message);
   } catch (error) {
     console.log(url);
