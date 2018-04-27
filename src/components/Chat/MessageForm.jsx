@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+
 import _connect from '../../connect';
 
 
 const mapStateToProps = (state) => {
   const props = {
-    currentUser: state.currentUser,
     currentChannelId: state.currentChannelId,
     messageAddingState: state.messageAddingState,
   };

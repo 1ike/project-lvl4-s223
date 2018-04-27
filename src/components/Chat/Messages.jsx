@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import cn from 'classnames';
 
 import _connect from '../../connect';
@@ -8,7 +7,6 @@ import _connect from '../../connect';
 const mapStateToProps = (state) => {
   const props = {
     messages: state.messages,
-    currentUser: state.currentUser,
   };
   return props;
 };
@@ -59,12 +57,12 @@ export default class Messages extends React.Component {
           });
 
           return (
-          <div key={message.id}>
-            <b className={userClass}>{message.user.name}:</b>
-            {message.text}
-          </div>
-        );
-})}
+            <div key={message.id}>
+              <b className={userClass}>{message.user.name}:</b>
+              {message.text}
+            </div>
+          );
+        })}
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { reducer as form } from 'redux-form';
 import { handleActions } from 'redux-actions';
 import * as actions from '../actions';
 
-const currentUser = (state = {}) => state;
+
 const channels = (state = {}) => state;
 const currentChannelId = (state = {}) => state;
 
@@ -26,19 +26,9 @@ const messages = handleActions({
   },
 }, []);
 
-// const newTaskText = handleActions({
-//   [actions.addMessage]() {
-//     return '';
-//   },
-//   [actions.updateNewTaskText](state, { payload: { text } }) {
-//     return text;
-//   },
-// }, '');
-
 
 export default combineReducers({
   form,
-  currentUser,
   channels,
   currentChannelId,
   messages,
