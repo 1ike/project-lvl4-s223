@@ -67,6 +67,7 @@
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
     "@babel/preset-stage-0": "*",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "*",
     "babel-loader": "^8.0.0-beta.2",
     "css-loader": "*",
