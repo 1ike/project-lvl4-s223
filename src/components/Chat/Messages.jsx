@@ -37,7 +37,7 @@ export default class Messages extends React.Component {
     return (
       <div
         id='messages'
-        className='border border-primary'
+        className='border border-primary flex-grow-1 p-2'
         ref={(el) => { this.el = el; }} // eslint-disable-line
       >
         {this.props.messages.map((message) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 
 import _connect from '../connect';
 
@@ -25,4 +25,4 @@ export default class Channels extends React.Component {
       </div>
     );
   }
-}
+} */

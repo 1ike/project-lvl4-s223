@@ -1,12 +1,9 @@
-.fade.in {
-  opacity: 1;
-}
-
-html {
+/* html {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
+
 body {
   display: flex;
   flex-direction: column;
@@ -28,13 +25,13 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   flex: auto;
-}
+} */
 
 #messages {
   min-height: 10em;
-  flex: auto;
+  /* flex: auto; */
   overflow: auto;
-  padding: 0.3em;
+  /* padding: 0.3em; */
 }
 
 .messages__currentUser {
