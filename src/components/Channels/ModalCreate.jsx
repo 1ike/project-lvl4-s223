@@ -53,7 +53,6 @@ export default class ModalCreate extends React.Component {
             <Modal.Title>Create channel</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {this.props.modalCreateChannel.show ?
             <Field
               component="input"
               name = {name}
@@ -63,7 +62,7 @@ export default class ModalCreate extends React.Component {
               disabled={disabled}
               ref={(input) => { this.input = input; }}
               withRef
-            /> : ''}
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.closeModalCreate} className='mr-2'>Close</Button>

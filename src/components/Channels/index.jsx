@@ -24,7 +24,8 @@ const mapStateToProps = (state) => {
 
 @_connect(mapStateToProps)
 export default class Channels extends React.Component {
-  chooseChannel = id => () => {
+  chooseChannel = id => (e) => {
+    e.preventDefault();
     if (this.props.currentChannelId === id) return;
     this.props.setCurrentChannel(id);
   }
@@ -54,7 +55,7 @@ export default class Channels extends React.Component {
             >
               {
                 this.props.currentChannelId === channel.id
-                  ? <b> {channel.name} </b>
+                  ? <b>{channel.name}</b>
                   : channel.name
               }
             </a>
