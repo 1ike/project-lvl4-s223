@@ -1,6 +1,7 @@
 import React from 'react';
 
 import _connect from '../../connect';
+import ModalCreate from './ModalCreate';
 import ModalDelete from './ModalDelete';
 
 
@@ -28,21 +29,27 @@ export default class Channels extends React.Component {
     this.props.setCurrentChannel(id);
   }
 
+  openModalCreate = (e) => {
+    e.preventDefault();
+    this.props.openModalCreateChannel();
+  }
   openModalDelete = id => (e) => {
     e.preventDefault();
     this.props.openModalDeleteChannel(id);
   }
 
   render() {
-    // console.log(this.props);
     return (
-      <div id='channels' className='mt-5'>
+      <div id='channels' className='mt-5 mb-5'>
+
         <h2>Channels:</h2>
+
         <ul className='mt-3'>{this.props.channels.map(channel => (
           <li key={channel.id} className='mt-2'>
             <a
               href="#"
               id={`channel_${channel.id}`}
+              className='mr-2'
               onClick={this.chooseChannel(channel.id)}
             >
               {
@@ -51,36 +58,23 @@ export default class Channels extends React.Component {
                   : channel.name
               }
             </a>
-            <IconButton title="Edit" img="pencil.svg" onclick={this.openModalDelete(channel)} />
-            <IconButton title="Delete" img="x.svg" onclick={this.openModalDelete(channel)} />
+            <IconButton title="Edit" img="pencil.svg" />
+            {channel.removable &&
+              <IconButton title="Delete" img="x.svg" onclick={this.openModalDelete(channel)}/>
+            }
           </li>
         ))}</ul>
+
         <button
           className='btn btn-outline-primary btn-sm mt-3 ml-3'
-          onClick={this.chooseChannel()}
+          onClick={this.openModalCreate}
         >
           Create channel
         </button>
+
+        <ModalCreate />
         <ModalDelete />
-        {/* <Modal show={this.props.modalCreateChannel.show}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p className='mt-4'>
-                          </p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.closeModalCreate()} className='mr-2'>Close</Button>
-            <Button
-              onClick={this.createChannel()}
-              bsStyle="danger"
-              disabled={this.props.channelCreatingState === 'requested'}
-            >
-              Delete
-            </Button>
-          </Modal.Footer>
-        </Modal> */}
+
       </div>
     );
   }

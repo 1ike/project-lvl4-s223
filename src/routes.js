@@ -2,8 +2,8 @@ const prefix = '/api/v1';
 
 
 const getPathFromRoute = (routeData, id) => {
-  const { route, param } = routeData;
-  return (prefix + route).replace(param, id);
+  const { route, param, baseRoute } = routeData;
+  return id ? (prefix + route).replace(param, id) : prefix + baseRoute;
 };
 
 
@@ -12,19 +12,21 @@ const messages = {
   param: ':channelId',
 };
 
-const channel = {
+const channels = {
   route: '/channels/:channelId',
   param: ':channelId',
+  baseRoute: '/channels',
 };
+
 
 export default {
   messages: {
     ...messages,
     getURL: id => getPathFromRoute(messages, id),
   },
-  channel: {
-    ...channel,
-    getURL: id => getPathFromRoute(channel, id),
+  channels: {
+    ...channels,
+    getURL: id => getPathFromRoute(channels, id),
   },
 };
 

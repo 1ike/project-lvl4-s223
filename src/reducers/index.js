@@ -4,20 +4,50 @@ import { handleActions } from 'redux-actions';
 import * as actions from '../actions';
 
 
+/**
+ * CHANNELS
+ */
+
+const currentChannelId = handleActions({
+  [actions.setCurrentChannel](state, { payload: id }) {
+    return id;
+  },
+}, 1);
+
+
 const channels = handleActions({
+  [actions.channelCreated](state, { payload: channel }) {
+    return [...state, channel];
+  },
   [actions.channelDeleted](state, { payload: id }) {
     return state.filter(channel => channel.id !== id);
   },
 }, {});
 
-
-const currentChannelId = handleActions({
-  [actions.setCurrentChannel](state, { payload }) {
-    return payload;
+// Create channel
+const channelCreatingState = handleActions({
+  [actions.createChannelRequest]() {
+    return 'requested';
   },
-}, '1');
+  [actions.createChannelFailure]() {
+    return 'failed';
+  },
+  [actions.createChannelSuccess]() {
+    return 'successed';
+  },
+}, 'none');
 
+const defaultModalCreateChannel = { channel: {}, show: false };
+const modalCreateChannel = handleActions({
+  [actions.openModalCreateChannel](state, { payload: channel }) {
+    return { channel, show: true };
+  },
+  [actions.closeModalCreateChannel]() {
+    return defaultModalCreateChannel;
+  },
+}, defaultModalCreateChannel);
 
+// Delete channel
 const channelDeletingState = handleActions({
   [actions.deleteChannelRequest]() {
     return 'requested';
@@ -40,6 +70,10 @@ const modalDeleteChannel = handleActions({
   },
 }, defaultModalDeleteChannel);
 
+
+/**
+ * MESSAGES
+ */
 
 const messageAddingState = handleActions({
   [actions.addMessageRequest]() {
@@ -70,6 +104,8 @@ export default combineReducers({
   form,
   channels,
   currentChannelId,
+  channelCreatingState,
+  modalCreateChannel,
   channelDeletingState,
   modalDeleteChannel,
   messageAddingState,
