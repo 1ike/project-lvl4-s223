@@ -12,10 +12,19 @@ const messages = {
   param: ':channelId',
 };
 
+const channel = {
+  route: '/channels/:channelId',
+  param: ':channelId',
+};
+
 export default {
   messages: {
     ...messages,
     getURL: id => getPathFromRoute(messages, id),
+  },
+  channel: {
+    ...channel,
+    getURL: id => getPathFromRoute(channel, id),
   },
 };
 

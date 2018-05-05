@@ -7,7 +7,7 @@ import adjustElemHeight from '../../lib';
 
 const mapStateToProps = (state) => {
   const props = {
-    messages: state.messages,
+    messages: state.messages.filter(msg => msg.channelId === state.currentChannelId),
   };
   return props;
 };

@@ -4,11 +4,14 @@ import { Provider } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
+import '../assets/images/pencil.svg';
+import '../assets/images/x.svg';
+
 
 import Context, { defaultContextValue } from './Context';
 import store from './store';
 import MainContainer from './components/Main';
-import { receiveMessage } from './actions';
+import { subscribeOnMessage, subscribeOnChannels } from './actions';
 
 // import socket from './socket';
 // socket.on('newMessage', msg => console.log(msg));
@@ -18,7 +21,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
-store.dispatch(receiveMessage());
+store.dispatch(subscribeOnMessage());
+store.dispatch(subscribeOnChannels());
 
 render(
   <Provider store={store}>
