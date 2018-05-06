@@ -3,6 +3,7 @@ const prefix = '/api/v1';
 
 const getPathFromRoute = (routeData, id) => {
   const { route, param, baseRoute } = routeData;
+
   return id ? (prefix + route).replace(param, id) : prefix + baseRoute;
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 
 import _connect from '../../connect';
 import ModalCreate from './ModalCreate';
+import ModalEdit from './ModalEdit';
 import ModalDelete from './ModalDelete';
 
 
@@ -34,9 +35,13 @@ export default class Channels extends React.Component {
     e.preventDefault();
     this.props.openModalCreateChannel();
   }
-  openModalDelete = id => (e) => {
+  openModalEdit = channel => (e) => {
     e.preventDefault();
-    this.props.openModalDeleteChannel(id);
+    this.props.openModalEditChannel(channel);
+  }
+  openModalDelete = channel => (e) => {
+    e.preventDefault();
+    this.props.openModalDeleteChannel(channel);
   }
 
   render() {
@@ -59,7 +64,7 @@ export default class Channels extends React.Component {
                   : channel.name
               }
             </a>
-            <IconButton title="Edit" img="pencil.svg" />
+            <IconButton title="Edit" img="pencil.svg" onclick={this.openModalEdit(channel)} />
             {channel.removable &&
               <IconButton title="Delete" img="x.svg" onclick={this.openModalDelete(channel)}/>
             }
@@ -74,6 +79,7 @@ export default class Channels extends React.Component {
         </button>
 
         <ModalCreate />
+        <ModalEdit />
         <ModalDelete />
 
       </div>

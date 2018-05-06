@@ -19,6 +19,10 @@ const channels = handleActions({
   [actions.channelCreated](state, { payload: channel }) {
     return [...state, channel];
   },
+  [actions.channelEdited](state, { payload: channel }) {
+    const newState = [...state.filter(c => c.id !== channel.id), channel];
+    return newState.sort((a, b) => a.id - b.id);
+  },
   [actions.channelDeleted](state, { payload: id }) {
     return state.filter(channel => channel.id !== id);
   },
@@ -46,6 +50,29 @@ const modalCreateChannel = handleActions({
     return defaultModalCreateChannel;
   },
 }, defaultModalCreateChannel);
+
+// Edite channel
+const channelEditingState = handleActions({
+  [actions.editChannelRequest]() {
+    return 'requested';
+  },
+  [actions.editChannelFailure]() {
+    return 'failed';
+  },
+  [actions.editChannelSuccess]() {
+    return 'successed';
+  },
+}, 'none');
+
+const defaultModalEditChannel = { channel: {}, show: false };
+const modalEditChannel = handleActions({
+  [actions.openModalEditChannel](state, { payload: channel }) {
+    return { channel, show: true };
+  },
+  [actions.closeModalEditChannel]() {
+    return defaultModalEditChannel;
+  },
+}, defaultModalEditChannel);
 
 // Delete channel
 const channelDeletingState = handleActions({
@@ -105,6 +132,8 @@ export default combineReducers({
   channels,
   currentChannelId,
   channelCreatingState,
+  modalEditChannel,
+  channelEditingState,
   modalCreateChannel,
   channelDeletingState,
   modalDeleteChannel,

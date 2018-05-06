@@ -7,26 +7,28 @@ import _connect from '../../connect';
 
 const mapStateToProps = (state) => {
   const props = {
-    modalCreateChannel: state.modalCreateChannel,
+    modalEditChannel: state.modalEditChannel,
     channelCreatingState: state.channelCreatingState,
   };
   return props;
 };
 
-@reduxForm({ form: 'createChannel' })
+@reduxForm({ form: 'editChannel' })
 @_connect(mapStateToProps)
-export default class ModalCreate extends React.Component {
-  inputName ='inputChannelName'
+export default class ModalEdit extends React.Component {
+  inputName = 'inputChannelNewName';
 
-  createChannel = (value) => {
+  editChannel = (value) => {
     const name = value[this.inputName];
     if (!name) return;
-    this.props.createChannel(name, this.props.reset);
+
+    const updatedChannel = { id: this.props.modalEditChannel.channel.id, name };
+    this.props.editChannel(updatedChannel, this.props.reset);
   }
 
-  closeModalCreate = () => {
+  closeModalEdit = () => {
     this.props.reset();
-    this.props.closeModalCreateChannel();
+    this.props.closeModalEditChannel();
   }
 
   // focusInput = () => {
@@ -43,23 +45,24 @@ export default class ModalCreate extends React.Component {
 
   render() {
     const disabled = this.props.channelCreatingState === 'requested';
+    const { show, channel } = this.props.modalEditChannel;
 
     return (
-      <Modal show={this.props.modalCreateChannel.show} onHide={this.closeModalCreate}>
+      <Modal show={show} onHide={this.closeModalEdit}>
         <form
           id='messageForm'
           className='mt-3'
-          onSubmit={this.props.handleSubmit(this.createChannel)}
+          onSubmit={this.props.handleSubmit(this.editChannel)}
         >
           <Modal.Header className='flex-row-reverse' closeButton>
-            <Modal.Title>Create channel</Modal.Title>
+            <Modal.Title>Edit channel &laquo;{channel.name}&raquo;</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Field
               component="input"
               name = {this.inputName}
               id={this.inputName}
-              placeholder='Enter channel name here'
+              placeholder='Enter new name for channel'
               className="form-control"
               disabled={disabled}
               ref={(input) => { this.input = input; }}
@@ -67,13 +70,13 @@ export default class ModalCreate extends React.Component {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.closeModalCreate} className='mr-2'>Close</Button>
+            <Button onClick={this.closeModalEdit} className='mr-2'>Close</Button>
             <Button
               type="submit"
               bsStyle="success"
               disabled={disabled}
             >
-              Create
+              Edit
             </Button>
           </Modal.Footer>
         </form>

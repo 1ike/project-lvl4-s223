@@ -45,6 +45,43 @@ export const createChannel = (name, reset) => async (dispatch) => {
   }
 };
 
+// Edit channel
+export const channelEdited = createAction('CHANNEL_EDITED');
+
+export const openModalEditChannel = createAction('OPEN_MODAL_EDIT_CHANNEL');
+export const closeModalEditChannel = createAction('CLOSE_MODAL_EDIT_CHANNEL');
+
+export const editChannelRequest = createAction('CHANNEL_EDIT_REQUEST');
+export const editChannelSuccess = createAction('CHANNEL_EDIT_SUCCESS');
+export const editChannelFailure = createAction('CHANNEL_EDIT_FAILURE');
+
+export const editChannel = (channel, reset) => async (dispatch) => {
+  dispatch(editChannelRequest());
+
+  const { name, id } = channel;
+
+  const url = routes.channels.getURL(id);
+  try {
+    const data = {
+      data: {
+        attributes: {
+          name,
+        },
+      },
+    };
+
+    await axios.patch(url, data);
+    // const response = await axios.post(url);
+    // const { data } = response.data;
+    dispatch(editChannelSuccess());
+    reset();
+    dispatch(closeModalEditChannel());
+  } catch (error) {
+    console.log(error);
+    dispatch(editChannelFailure());
+  }
+};
+
 // Delete channel
 export const channelDeleted = createAction('CHANNEL_DELETED');
 
@@ -76,6 +113,10 @@ export const deleteChannel = channel => async (dispatch) => {
 export const subscribeOnChannels = () => (dispatch, getStore) => {
   socket.on('newChannel', ({ data: { attributes: channel } }) => {
     dispatch(channelCreated(channel));
+  });
+
+  socket.on('renameChannel', ({ data: { attributes: channel } }) => {
+    dispatch(channelEdited(channel));
   });
 
   socket.on('removeChannel', ({ data: { id } }) => {
@@ -126,7 +167,6 @@ export const addMessage = (text, user, channelId, reset) => async (dispatch) => 
 // Listen all messages events
 export const subscribeOnMessage = () => (dispatch) => {
   socket.on('newMessage', (msg) => {
-    console.log(msg);
     dispatch(messageReceived(msg.data.attributes));
   });
 };
