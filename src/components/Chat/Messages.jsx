@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 
 import _connect from '../../connect';
-import adjustElemHeight from '../../lib';
+// import adjustElemHeight from '../../lib';
 
 
 const mapStateToProps = (state) => {
@@ -14,19 +14,21 @@ const mapStateToProps = (state) => {
 
 @_connect(mapStateToProps)
 export default class Messages extends React.Component {
-  setHeightAndScroll = () => {
-    adjustElemHeight(this.el);
-    this.scrollToBottom();
-  }
+  // setHeightAndScroll = () => {
+  //   adjustElemHeight(this.el);
+  //   this.scrollToBottom();
+  // }
 
   scrollToBottom() {
     this.el.scrollTop = this.el.scrollHeight;
   }
 
   componentDidMount() {
-    this.setHeightAndScroll();
+    // this.setHeightAndScroll();
 
-    window.addEventListener('resize', this.setHeightAndScroll);
+    // window.addEventListener('resize', this.setHeightAndScroll);
+
+    this.scrollToBottom();
   }
 
   componentDidUpdate() {
