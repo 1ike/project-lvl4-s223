@@ -20,7 +20,10 @@ export default class ModalEdit extends React.Component {
 
   editChannel = (value) => {
     const name = value[this.inputName];
-    if (!name) return;
+    if (!name) {
+      this.focusInput();
+      return;
+    }
 
     const updatedChannel = { id: this.props.modalEditChannel.channel.id, name };
     this.props.editChannel(updatedChannel, this.props.reset);
@@ -31,9 +34,9 @@ export default class ModalEdit extends React.Component {
     this.props.closeModalEditChannel();
   }
 
-  // focusInput = () => {
-  //   this.input.getRenderedComponent().focus();
-  // }
+  focusInput = () => {
+    this.input.getRenderedComponent().focus();
+  }
 
   // componentDidMount() {
   //   this.focusInput();
@@ -67,6 +70,7 @@ export default class ModalEdit extends React.Component {
               disabled={disabled}
               ref={(input) => { this.input = input; }}
               withRef
+              autoFocus={true}
             />
           </Modal.Body>
           <Modal.Footer>

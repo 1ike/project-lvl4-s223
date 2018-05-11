@@ -59,6 +59,7 @@ export default class MessageForm extends React.Component {
           disabled={disabled}
           ref={(input) => { this.input = input; }}
           withRef
+          autoFocus={true}
         />
 
         <button

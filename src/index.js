@@ -13,8 +13,6 @@ import store from './store';
 import MainContainer from './components/Main';
 import { subscribeOnMessage, subscribeOnChannels } from './actions';
 
-// import socket from './socket';
-// socket.on('newMessage', msg => console.log(msg));
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';

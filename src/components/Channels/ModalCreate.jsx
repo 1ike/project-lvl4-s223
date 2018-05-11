@@ -20,7 +20,10 @@ export default class ModalCreate extends React.Component {
 
   createChannel = (value) => {
     const name = value[this.inputName];
-    if (!name) return;
+    if (!name) {
+      this.focusInput();
+      return;
+    }
     this.props.createChannel(name, this.props.reset);
   }
 
@@ -29,9 +32,9 @@ export default class ModalCreate extends React.Component {
     this.props.closeModalCreateChannel();
   }
 
-  // focusInput = () => {
-  //   this.input.getRenderedComponent().focus();
-  // }
+  focusInput = () => {
+    this.input.getRenderedComponent().focus();
+  }
 
   // componentDidMount() {
   //   this.focusInput();
@@ -64,6 +67,7 @@ export default class ModalCreate extends React.Component {
               disabled={disabled}
               ref={(input) => { this.input = input; }}
               withRef
+              autoFocus={true}
             />
           </Modal.Body>
           <Modal.Footer>
